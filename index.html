@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Shamoji Previwer</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      main {
+        display: flex;
+        min-height: 100%;
+      }
+
+      div {
+        width: 50%;
+        min-height: 100%;
+        text-align: center;
+      }
+
+      div:first-child {
+        background-color: #f0f0f0;
+      }
+
+      div:last-child {
+        background-color: #333333;
+      }
+    </style>
+    <script>
+      const fn = "@svg@";
+      const path = `svg/${fn}.svg`;
+
+      document.addEventListener("DOMContentLoaded", () => {
+        Array.from(document.querySelectorAll("img")).forEach((img) => {
+          img.setAttribute("src", path);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <main>
+      <div>
+        <p><img src="" height="96" /></p>
+        <p><img src="" height="88" /></p>
+        <p><img src="" height="80" /></p>
+        <p><img src="" height="72" /></p>
+        <p><img src="" height="64" /></p>
+        <p><img src="" height="48" /></p>
+        <p><img src="" height="32" /></p>
+        <p><img src="" height="24" /></p>
+        <p><img src="" height="16" /></p>
+      </div>
+      <div>
+        <p><img src="" height="96" /></p>
+        <p><img src="" height="88" /></p>
+        <p><img src="" height="80" /></p>
+        <p><img src="" height="72" /></p>
+        <p><img src="" height="64" /></p>
+        <p><img src="" height="48" /></p>
+        <p><img src="" height="32" /></p>
+        <p><img src="" height="24" /></p>
+        <p><img src="" height="16" /></p>
+      </div>
+    </main>
+  </body>
+</html>

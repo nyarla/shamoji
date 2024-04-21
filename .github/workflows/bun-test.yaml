@@ -1,0 +1,26 @@
+name: Test toolchain
+
+jobs:
+  pull_request:
+    paths:
+      - ".github/workflows/bun-test.yaml"
+      - "src"
+      - "test"
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
+        with:
+          bun-version: latest
+      - uses: oven-sh/setup-bun@8f24390df009a496891208e5e36b8a1de1f45135 # v1.2.1
+      - run: bun install
+      - run: bun test

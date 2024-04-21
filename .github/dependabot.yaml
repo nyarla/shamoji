@@ -1,0 +1,15 @@
+---
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      time: "10:00"
+      timezone: "Asia/Tokyo"
+    labels:
+      - dependabot
+    pull-request-branch-name:
+      separator: "-"
+    commit-message:
+      prefix: "chore(dependabot): "

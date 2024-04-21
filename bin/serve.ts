@@ -1,10 +1,30 @@
 import { join } from "node:path";
 
-import { compile } from "./compile";
+import { compile } from "../src/svg";
 
 const root = join(import.meta.dir, "..");
 const template = await Bun.file(join(root, "index.html")).text();
-const svg = join(root, "svg");
+const cache = join(root, "node_modules", ".shamoji");
+const emojis = join(root, "emojis");
+
+const dump = async (fn) => {
+  const src = join(emojis, `${fn}.tsx`);
+  if (!(await Bun.file(src).exists())) {
+    return false;
+  }
+
+  const rev = Date.now();
+  const dist = join(cache, `${fn}.svg`);
+
+  const emojifier = (await import(`${src}?version=${rev}`)).default;
+  const svg = await compile(emojifier);
+
+  Bun.write(dist, svg);
+
+  console.log(`render to ${dist} (${rev})`);
+
+  return true;
+};
 
 const serve = async (r) => {
   const href = new URL(r.url);
@@ -14,8 +34,12 @@ const serve = async (r) => {
   }
 
   if (href.pathname.match(/\.svg$/)) {
-    const fn = href.pathname.match(/([^/]+)\.svg$/)[1];
-    const file = Bun.file(join(svg, `${fn}.svg`));
+    const fn = href.pathname.replace(/\.svg$/g, "").replace(/\./g, "");
+
+    console.log(fn);
+
+    const file = Bun.file(join(cache, `${fn}.svg`));
+
     return new Response(file, {
       status: 200,
       headers: {
@@ -24,12 +48,14 @@ const serve = async (r) => {
     });
   }
 
-  const fn = href.pathname.match(/([^/]+)$/)[1];
-  const html = String(template).replace("@svg@", fn);
+  const fn = href.pathname.replace(/\./g, "");
+  const ok = await dump(fn);
 
-  await compile(fn);
+  if (!ok) {
+    return new Response("404", { "Content-Type": "text/plain" });
+  }
 
-  return new Response(html, {
+  return new Response(template, {
     status: 200,
     headers: {
       "Content-Type": "text/html",

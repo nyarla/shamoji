@@ -32,9 +32,7 @@
       }
     </style>
     <script>
-      const fn = "@svg@";
-      const path = `svg/${fn}.svg`;
-
+      const path = location.href + ".svg";
       document.addEventListener("DOMContentLoaded", () => {
         Array.from(document.querySelectorAll("img")).forEach((img) => {
           img.setAttribute("src", path);

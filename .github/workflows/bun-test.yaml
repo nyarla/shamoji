@@ -1,6 +1,6 @@
 name: Test toolchain
 
-jobs:
+on:
   pull_request:
     paths:
       - ".github/workflows/bun-test.yaml"

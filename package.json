@@ -1,5 +1,6 @@
 {
   "private": true,
+  "license": "ISC",
   "dependencies": {
     "@types/bun": "^1.1.0",
     "react": "^18.2.0",

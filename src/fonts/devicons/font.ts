@@ -1,18 +1,27 @@
-import { readFile } from "node:fs/promises";
+import type { FontConfig, FontLicense } from "../../font";
 
-import { FontOptions } from "satori";
-import type { FontWeight, FontStyle } from "satori";
+const { file } = Bun;
 
-export default async function (): Promise<FontOptions> {
+const spec = {
+  name: "devicons",
+  summary: `An iconic font made for developers`,
+  homepageUrl: "http://vorillaz.github.io/devicons/",
+  licenses: [
+    {
+      spdx: "MIT",
+      copyrights: ["Theodore Vorillas"],
+      licenseUrl: "http://opensource.org/licenses/mit-license.html",
+    },
+  ] as FontLicense[],
+} as const;
+
+const load = async () => {
   const fn = new URL(
     "../../../node_modules/devicons/fonts/devicons.ttf",
     import.meta.url,
   );
 
-  return {
-    name: "devicons",
-    data: await readFile(fn),
-    weight: 400,
-    style: "normal",
-  };
-}
+  return file(fn).arrayBuffer();
+};
+
+export const Devicons: FontConfig = { spec, load } as const;

@@ -1,23 +1,54 @@
+
 {
   "compilerOptions": {
-    "lib": ["ESNext"],
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleDetection": "force",
-    "jsx": "react-jsx",
-    "allowJs": true,
-
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "noEmit": true,
-
+    // Type checking
     "strict": true,
-    "skipLibCheck": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels":false,
     "noFallthroughCasesInSwitch": true,
-
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noPropertyAccessFromIndexSignature": true
-  }
+
+    // Modules
+    "allowImportingTsExtensions": true,
+    "moduleResolution": "bundler",
+    "rootDir": "./src",
+    "types": [
+      "@types/bun"
+    ],
+
+    // Emit
+    "declaration": true,
+    "outDir": "./dist",
+    "noEmit": true,
+
+    // JavaScript support
+    "allowJs": true,
+
+    // Interop constraints
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": true,
+
+    // Language and environment
+    "lib": [
+      "ES2022"
+    ],
+    "target": "es2022",
+    "moduleDetection": "force",
+    "jsx": "preserve",
+
+    // Completeness
+    "skipLibCheck": true
+
+  },
+  // Include the necessary files for your project
+  "include": [
+    "**/*.ts",
+    "**/*.d.ts",
+    "**/*.tsx"
+  ]
 }
+

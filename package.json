@@ -3,6 +3,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/bun": "^1.1.0",
+    "@types/react": "^18.3.3",
     "devicons": "^1.8.0",
     "react": "^18.2.0",
     "satori": "^0.10.13",

@@ -1,6 +1,12 @@
-{ pkgs, ... }: {
-  packages = with pkgs; [ bun ];
-  processes.serve.exec = ''
-    bun run bin/serve.ts
+{
+  ...
+}:
+{
+  languages.typescript.enable = true;
+  languages.javascript.enable = true;
+  languages.javascript.bun.enable = true;
+
+  enterTest = ''
+    bun test
   '';
 }

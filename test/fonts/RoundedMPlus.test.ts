@@ -33,7 +33,7 @@ for (const spec of specs) {
       const { name, lang, summary, homepageUrl, licenses } = spec.font.spec;
 
       expect(name).toBe(spec.name);
-      expect(lang).toBe("ja");
+      expect(lang).toBe("ja-JP");
       expect(summary).not.toBeEmpty();
       expect(homepageUrl).toBe("http://jikasei.me/font/rounded-mplus/");
       expect(licenses[0].spdx).toBe("custom");

@@ -4,6 +4,7 @@ const { file } = Bun;
 
 const spec = {
   name: "devicons",
+  lang: "symbol",
   summary: `An iconic font made for developers`,
   homepageUrl: "http://vorillaz.github.io/devicons/",
   licenses: [

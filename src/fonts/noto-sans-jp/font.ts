@@ -17,7 +17,7 @@ const weights = {
 
 const spec = {
   name: "Noto Sans JP",
-  lang: "ja",
+  lang: "ja-JP",
   summary:
     "Noto Sans JP is an unmodulated (“sans serif”) design for the Japanese language and other languages used in Japan",
   homepageUrl: "https://fonts.google.com/noto/specimen/Noto+Sans+JP",

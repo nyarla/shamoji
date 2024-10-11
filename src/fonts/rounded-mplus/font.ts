@@ -15,7 +15,7 @@ const weights: Record<number, string> = {
 
 const mkSpec = (name: string): FontSpec => ({
   name,
-  lang: "ja",
+  lang: "ja-JP",
   summary:
     "'Rounded M+ FONTS' is a modification of 'M+ OUTLINE FONTS'in rounded edges",
   homepageUrl: "http://jikasei.me/font/rounded-mplus/",

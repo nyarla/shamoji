@@ -6,7 +6,7 @@ describe("NotoSansJP", () => {
     const { name, lang, summary, homepageUrl, licenses } = config.spec;
 
     expect(name).toBe("Noto Sans JP");
-    expect(lang).toBe("ja");
+    expect(lang).toBe("ja-JP");
     expect(summary).toBeString();
     expect(homepageUrl).toBeString();
     expect(licenses[0].spdx).toBe("OFL-1.1");

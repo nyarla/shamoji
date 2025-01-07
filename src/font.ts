@@ -1,18 +1,12 @@
 import type { Font, FontWeight, FontStyle } from "satori";
-import type { License } from "./licenses";
-
-export type FontLicense = {
-  spdx: License;
-  copyrights: string[];
-  licenseUrl?: string;
-};
+import type { License } from "./license";
 
 export type FontSpec = {
   name: string;
   summary?: string;
   homepageUrl?: string;
   lang?: string;
-  licenses: FontLicense[];
+  licenses: License[];
 };
 
 export type FontLoader = (

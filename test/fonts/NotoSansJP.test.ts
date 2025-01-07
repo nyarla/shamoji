@@ -11,6 +11,10 @@ describe("NotoSansJP", () => {
     expect(homepageUrl).toBeString();
     expect(licenses[0].spdx).toBe("OFL-1.1");
     expect(licenses[0].copyrights[0]).toBeString();
-    expect(licenses[0].licenseUrl).toBeString();
+    expect(licenses[0].licenseUrl).toEqual(
+      new URL(
+        "https://github.com/google/fonts/blob/main/ofl/notosansjp/OFL.txt",
+      ),
+    );
   });
 });

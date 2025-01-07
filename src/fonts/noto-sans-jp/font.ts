@@ -1,5 +1,6 @@
 import type { FontWeight } from "satori";
-import type { FontConfig, FontLicense } from "../../font";
+import type { FontConfig } from "../../font";
+import type { License } from "../../license";
 
 const { file } = Bun;
 
@@ -27,10 +28,11 @@ const spec = {
       copyrights: [
         `(c) 2014-2021 Adobe (http://www.adobe.com/), with Reserved Font Name 'Source'.`,
       ],
-      licenseUrl:
+      licenseUrl: new URL(
         "https://github.com/google/fonts/blob/main/ofl/notosansjp/OFL.txt",
+      ),
     },
-  ] as FontLicense[],
+  ] as License[],
 };
 
 const load = (weight?: FontWeight) => {

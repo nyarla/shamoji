@@ -1,4 +1,5 @@
-import type { FontConfig, FontLicense } from "../../font";
+import type { FontConfig } from "../../font";
+import type { License } from "../../license";
 
 const { file } = Bun;
 
@@ -11,9 +12,9 @@ const spec = {
     {
       spdx: "MIT",
       copyrights: ["Theodore Vorillas"],
-      licenseUrl: "http://opensource.org/licenses/mit-license.html",
+      licenseUrl: new URL("http://opensource.org/licenses/mit-license.html"),
     },
-  ] as FontLicense[],
+  ] as License[],
 } as const;
 
 const load = async () => {

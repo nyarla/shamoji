@@ -13,8 +13,8 @@ describe("devicons", () => {
     expect(spec.homepageUrl).toBe("http://vorillaz.github.io/devicons/");
     expect(spec.licenses[0].spdx).toBe("MIT");
     expect(spec.licenses[0].copyrights[0]).toBe("Theodore Vorillas");
-    expect(spec.licenses[0].licenseUrl).toBe(
-      "http://opensource.org/licenses/mit-license.html",
+    expect(spec.licenses[0].licenseUrl).toEqual(
+      new URL("http://opensource.org/licenses/mit-license.html"),
     );
   });
 

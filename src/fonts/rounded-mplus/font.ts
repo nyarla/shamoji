@@ -1,5 +1,6 @@
 import type { FontWeight } from "satori";
-import type { FontSpec, FontConfig, FontLicense } from "../../font";
+import type { FontSpec, FontConfig } from "../../font";
+import type { License } from "../../license";
 
 const { file } = Bun;
 
@@ -35,7 +36,7 @@ THESE FONTS ARE PROVIDED "AS IS" WITHOUT WARRANTY.
 `,
       ],
     },
-  ] as FontLicense[],
+  ] as License[],
 });
 
 const mkLoad = (

@@ -37,6 +37,7 @@
       "ES2022"
     ],
     "target": "es2022",
+    "module": "es2022",
     "moduleDetection": "force",
     "jsx": "preserve",
 

@@ -1,31 +1,20 @@
 import type { ReactNode } from "react";
-import type { SatoriOptions } from "satori";
+import type { Font as SatoriFont, SatoriOptions } from "satori";
 
-import type { FontConfig } from "./font";
-import type { License } from "./licenses";
+import type { Font, FontWeight, FontStyle } from "./font";
+import type { License } from "./license";
 
 import satori from "satori";
 import { loadFont } from "./font";
 
-export type EmojiLicense = {
-  spdx: License;
-  copyrights: string[];
-  licenseUrl?: string;
-};
+export type EmojiSVG = string;
 
-export type EmojiSpec = {
+export type EmojiMeta = {
   id: string;
   lang: string;
   readings: string[];
   alt: string;
-  licenses: EmojiLicense[];
-};
-
-export type Emoji = {
-  spec: EmojiSpec;
-  node: ReactNode;
-  fonts: FontConfig[];
-  options: EmojiOptions;
+  licenses: License[];
 };
 
 export type EmojiOptions = {
@@ -34,13 +23,33 @@ export type EmojiOptions = {
   [key: string]: any;
 };
 
-export const renderEmoji = async (emoji: Emoji): Promise<string> => {
-  const { node, fonts, options } = emoji;
+export type EmojiFont = {
+  font: Font;
+  weight?: FontWeight;
+  style?: FontStyle;
+};
 
-  const satoriOptions = Object.assign(
-    { fonts: await Promise.all(fonts.map((f) => loadFont(f))) },
-    options,
-  ) as SatoriOptions;
+export type EmojiData = {
+  shape: ReactNode;
+  fonts: EmojiFont[];
+  options: EmojiOptions;
+};
 
-  return satori(node, satoriOptions);
+export type Emoji = {
+  meta: EmojiMeta;
+  data: EmojiData;
+};
+
+export const loadEmojiFont = async (font: EmojiFont): Promise<SatoriFont> =>
+  loadFont(font.font, font.weight, font.style);
+
+export const renderEmoji = async (emoji: Emoji): Promise<EmojiSVG> => {
+  const { shape, fonts, options } = emoji.data;
+
+  const satoriOptions: SatoriOptions = {
+    fonts: await Promise.all(fonts.map((f) => loadEmojiFont(f))),
+    ...options,
+  };
+
+  return satori(shape, satoriOptions);
 };

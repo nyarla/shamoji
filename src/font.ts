@@ -24,7 +24,7 @@ export type Font = {
 
 export async function loadFont(
   font: Font,
-  weight: FontWeight,
+  weight?: FontWeight,
   style?: FontStyle,
 ): Promise<FontConfig> {
   const { name, lang } = font.meta;

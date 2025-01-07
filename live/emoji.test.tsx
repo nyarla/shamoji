@@ -6,11 +6,11 @@ import { renderEmoji, type Emoji } from "../src/emoji";
 describe("emoji", () => {
   test("renderEmoji", async () => {
     const license = {
-      spdx: "MIT",
+      spdx: "custom",
       copyrights: ["test"],
     };
 
-    const spec = {
+    const meta = {
       id: "test",
       lang: "en",
       readings: ["test"],
@@ -18,14 +18,18 @@ describe("emoji", () => {
       licenses: [license],
     };
 
-    const emoji: Emoji = {
-      spec,
-      node: <div>test</div>,
-      fonts: [RoundedMPlus_1c],
+    const data = {
+      shape: <div>test</div>,
+      fonts: [{ font: RoundedMPlus_1c }],
       options: {
         width: 32,
         height: 32,
       },
+    };
+
+    const emoji: Emoji = {
+      meta,
+      data,
     };
 
     const svg = await renderEmoji(emoji);

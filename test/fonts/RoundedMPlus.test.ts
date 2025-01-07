@@ -30,12 +30,14 @@ const specs = [
 for (const spec of specs) {
   describe(spec.name, () => {
     test("spec", () => {
-      const { name, lang, summary, homepageUrl, licenses } = spec.font.spec;
+      const { name, lang, summary, homepageUrl, licenses } = spec.font.meta;
 
       expect(name).toBe(spec.name);
       expect(lang).toBe("ja-JP");
       expect(summary).not.toBeEmpty();
-      expect(homepageUrl).toBe("http://jikasei.me/font/rounded-mplus/");
+      expect(homepageUrl).toEqual(
+        new URL("http://jikasei.me/font/rounded-mplus/"),
+      );
       expect(licenses[0].spdx).toBe("custom");
       expect(licenses[0].copyrights[0]).not.toBeEmpty();
     });

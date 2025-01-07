@@ -1,29 +1,28 @@
-import type { FontConfig } from "../../font";
-import type { License } from "../../license";
+import type { Font } from "../../font";
 
 const { file } = Bun;
 
-const spec = {
+const licenses = [
+  {
+    spdx: "MIT",
+    copyrights: ["Theodore Vorillas"],
+    licenseUrl: new URL("http://opensource.org/licenses/mit-license.html"),
+  },
+];
+
+const meta = {
   name: "devicons",
   lang: "symbol",
   summary: `An iconic font made for developers`,
-  homepageUrl: "http://vorillaz.github.io/devicons/",
-  licenses: [
-    {
-      spdx: "MIT",
-      copyrights: ["Theodore Vorillas"],
-      licenseUrl: new URL("http://opensource.org/licenses/mit-license.html"),
-    },
-  ] as License[],
+  homepageUrl: new URL("http://vorillaz.github.io/devicons/"),
+  licenses,
 } as const;
 
-const load = async () => {
-  const fn = new URL(
-    "../../../node_modules/devicons/fonts/devicons.ttf",
-    import.meta.url,
-  );
+const fn = new URL(
+  "../../../node_modules/devicons/fonts/devicons.ttf",
+  import.meta.url,
+);
 
-  return file(fn).arrayBuffer();
-};
+const load = async () => file(fn).arrayBuffer();
 
-export const Devicons: FontConfig = { spec, load } as const;
+export const Devicons: Font = { meta, load } as const;

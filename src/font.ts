@@ -1,11 +1,14 @@
-import type { Font, FontWeight, FontStyle } from "satori";
+import type { Font as FontConfig, FontWeight, FontStyle } from "satori";
 import type { License } from "./license";
 
-export type FontSpec = {
-  name: string;
+export type FontFamily = string;
+export type { FontWeight, FontStyle };
+
+export type FontMeta = {
+  name: FontFamily;
   summary?: string;
-  homepageUrl?: string;
-  lang?: string;
+  homepageUrl?: URL;
+  lang: string;
   licenses: License[];
 };
 
@@ -14,19 +17,18 @@ export type FontLoader = (
   style?: FontStyle,
 ) => Promise<ArrayBuffer>;
 
-export type FontConfig = {
-  spec: FontSpec;
+export type Font = {
+  meta: FontMeta;
   load: FontLoader;
 };
 
 export async function loadFont(
-  config: FontConfig,
-  weight?: FontWeight,
+  font: Font,
+  weight: FontWeight,
   style?: FontStyle,
-): Promise<Font> {
-  const { name, lang } = config.spec;
-  const { load } = config;
-  const data = await load(weight, style);
+): Promise<FontConfig> {
+  const { name, lang } = font.meta;
+  const data = await font.load(weight, style);
 
   return { name, lang, data, weight } as const;
 }
